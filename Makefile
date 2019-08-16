@@ -3,6 +3,6 @@ subdirs := emc17xx emc181x pac1934
 
 all: $(subdirs)
 clean: $(subdirs)
-
+modules_install: $(subdirs)
 $(subdirs):
 	make -C $@ $(MAKECMDGOALS)
