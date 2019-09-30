@@ -66,16 +66,16 @@ static int emc181x_read(struct device *dev, enum hwmon_sensor_types type,
 		return -ENOTSUPP;
 	}
 	channel_reg = 0x60 + (channel * 0x02);
-	printk(KERN_DEBUG "Reading channel %d register %X\n", channel, channel_reg);
 	channel_deg = i2c_smbus_read_byte_data(i2c, channel_reg);
 
 	channel_frac = i2c_smbus_read_byte_data(i2c, channel_reg + 0x01);
 	channel_frac = channel_frac >> 5;
 
-	printk(KERN_DEBUG "Got values %02X,%02X for channel %d\n", channel_deg, channel_frac, channel);
-
 	temperature_val = channel_deg * 1000 + (channel_frac * 125);
-	printk(KERN_DEBUG "Final temperature value: %ld\n", temperature_val);
+	#ifdef DEBUG
+	printk(KERN_DEBUG "Got values %02X,%02X for channel %d\n", channel_deg, channel_frac, channel);
+	printf(KERN_DEBUG "Final temperature value: %ld\n", temperature_val);
+	#endif
 	*val = temperature_val;
 
 	return 0;
