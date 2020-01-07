@@ -2,7 +2,7 @@
 
 These hwmon drivers are for new devices currently not in the mainline Linux kernel.
 
-These drivers are installed via [https://github.com/dell/dkms](dkms) so you do not need to build a full custom kernel to use them. Eventually these drivers will be submitted for inclusion upstream.
+These drivers are installed via [dkms](https://github.com/dell/dkms) so you do not need to build a full custom kernel to use them. Eventually these drivers will be submitted for inclusion upstream.
 
 ## Microchip EMC17XX
 * Known issues: Needs attribute rework.
