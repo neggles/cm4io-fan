@@ -1,5 +1,5 @@
 KERNELRELEASE ?= `uname -r`
-subdirs := emc17xx emc181x pac1934
+subdirs := emc17xx emc181x pac1934 emc2301
 .PHONY: $(subdirs)
 
 all: $(subdirs)
