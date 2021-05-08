@@ -1,0 +1,16 @@
+#!/bin/bash
+
+remove_dt_overlay()
+{
+    local overlay="cm4io-fan.dtbo"
+    local overlays_dir="/boot/overlays"
+
+    echo "$overlay:"
+    echo " - Uninstallation"
+    echo "   - Deleting from: $overlays_dir/"
+    rm $overlays_dir/$overlay
+}
+
+remove_dt_overlay
+echo ""
+

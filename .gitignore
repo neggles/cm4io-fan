@@ -4,3 +4,5 @@
 *.cmd
 Module.symvers
 modules.order
+
+build/

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+ret=-1
+
+install_dt_overlay()
+{
+    local PWD=$(eval pwd)
+    local overlay="cm4io-fan.dtbo"
+    local base_dir="${PWD%/*}/$KERNELRELEASE/$arch/module"
+    local overlays_dir="/boot/overlays"
+
+    echo "$overlay:"
+    echo " - Installation"
+    echo "   - Installing to $overlays_dir/"
+    cp $base_dir/$overlay $overlays_dir/.
+    ret=$?
+}
+
+install_dt_overlay
+echo ""
+exit $ret
+
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+ret=-1
+
+save_dt_overlay()
+{
+    local PWD=$(eval pwd)
+    local overlay="cm4io-fan.dtbo"
+    local build_dir=$PWD
+    local base_dir="${PWD%/overlays*}/$KERNELRELEASE/$arch/module"
+
+    echo "$overlay:"
+    echo " - Post build"
+    echo "   - Copying to $base_dir/"
+    # HACK: not needed if this script is invoked by dkms
+    [ -d $base_dir ] || mkdir -p $base_dir
+    cp $build_dir/$overlay $base_dir/.
+    ret=$?
+}
+
+save_dt_overlay
+echo ""
+exit $ret
+
