@@ -1,6 +1,6 @@
 Source: cm4io-fan-dkms
 Maintainer: Andrew Powers-Holmes <andrew@omnom.net>
-Build-Depends: debhelper (>= 13), dkms
+Build-Depends: debhelper (>= 9), dkms
 
 Package: cm4io-fan-dkms
 Architecture: arm64
