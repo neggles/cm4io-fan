@@ -6,7 +6,7 @@ install_dt_overlay()
 {
     local PWD=$(eval pwd)
     local overlay="cm4io-fan.dtbo"
-    local base_dir="${PWD%/*}/$KERNELRELEASE/$arch/module"
+    local base_dir="${PWD%/*}/$kernelver/$arch/module"
     local overlays_dir="/boot/overlays"
 
     echo "$overlay:"
