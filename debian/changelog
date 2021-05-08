@@ -1,0 +1,5 @@
+cm4io-fan-dkms (0.1.0-0) buster; urgency=medium
+
+  * Initial package.
+
+-- Andrew Powers-Holmes <andrew@omnom.net> Sat, 08 Apr 2021 22:40:00 +1000

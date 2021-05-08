@@ -1,0 +1,8 @@
+Source: cm4io-fan-dkms
+Maintainer: Andrew Powers-Holmes <andrew@omnom.net>
+Build-Depends: debhelper (>= 13), dkms
+
+Package: cm4io-fan-dkms
+Architecture: arm64
+Depends: ${misc:Depends}
+Description: DKMS source for the Pi CM4 IO board fan controller
