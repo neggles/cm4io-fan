@@ -11,11 +11,13 @@ Uses Traverse Technologies' EMC2301 [hwmon driver](https://gitlab.traverse.com.a
 ```
 sudo apt install dkms
 ```
-2. Download the latest release from the releases page, and install it:
+2. Download the latest source .tar.gz from the releases page
+3. Untar it to `/usr/src/cm4io-fan-<version>` and run the dkms install:
 ```
-sudo apt install ./cm4io-fan.dpkg
+tar -xzvf cm4io-fan-0.1.0.tar.gz -C /usr/src/
+sudo dkms install cm4io-fan/0.1.0
 ```
-3. Add this line to your /boot/config.txt (adjust the rpm values for your specific fan, defaults are 3500 / 5500) and reboot.
+4. Add this line to your /boot/config.txt (adjust the rpm values for your specific fan, defaults are 3500 / 5500) and reboot.
    See below for more config options.
 ```
 dtoverlay=cm4io-fan,minrpm=1000,maxrpm=5000
@@ -41,17 +43,6 @@ Params: minrpm              RPM target for the fan when the SoC is below
         maxtemp_hyst        Temperature delta (in millicelcius) below maxtemp
                             at which the fan begins to slow down (default 2000)
 ```
-
-## Usage without the .deb
-
-1. Download the latest source .tar.gz from the releases page
-2. Untar it to `/usr/src/cm4io-fan-<version>` and run the dkms install:
-```
-tar -xzvf cm4io-fan-0.1.0.tar.gz -C /usr/src/
-sudo dkms install cm4io-fan/0.1.0
-```
-
-Add the config.txt line and reboot.
 
 ### many thanks to:
 - [taudac/taudac-driver-dkms](https://github.com/taudac/taudac-driver-dkms) for helping me work out how the shit DKMS works
