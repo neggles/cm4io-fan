@@ -1,1 +1,0 @@
-obj-m := emc17xx.o
