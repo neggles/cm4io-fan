@@ -1,6 +1,7 @@
 
 KERNELRELEASE ?= `uname -r`
 export kernelver ?= $(shell uname -r)
+export arch ?= $(shell uname -m)
 
 DIRS = emc2301 overlays
 BUILDDIRS = $(DIRS:%=build-%)
