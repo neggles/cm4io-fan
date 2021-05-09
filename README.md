@@ -23,6 +23,21 @@ sudo dkms install cm4io-fan/0.1.0
 dtoverlay=cm4io-fan,minrpm=1000,maxrpm=5000
 ```
 
+## Install from git
+1. Install dkms if you haven't already:
+```
+sudo apt install dkms
+```
+2. Clone the repo
+```
+mkdir -p ~/src
+cd ~/src
+git clone https://github.com/neg2led/cm4io-fan.git
+cd cm4io-fan
+```
+3. Run install.sh, feel free to inspect it yourself first. It will archive the current HEAD to /usr/src with an appropriate version, and run DKMS.
+
+
 ## Config options
 The device tree overlay has a few options, here's the equivalent of a `/boot/overlays/README` info section:
 
