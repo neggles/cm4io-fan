@@ -14,7 +14,6 @@ save_dt_overlay()
     echo "   - Copying $build_dir/$overlay to $base_dir/"
     # HACK: not needed if this script is invoked by dkms
     [ -d $base_dir ] || mkdir -p ${base_dir}
-    cp -rf ../build /tmp/build
     cp "${build_dir}/${overlay}" "${base_dir}/"
     ret=$?
 }
