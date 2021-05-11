@@ -14,11 +14,11 @@ all: check_dkms $(BUILDDIRS)
 modules_install: $(BUILDDIRS)
 $(DIRS): $(BUILDDIRS)
 $(BUILDDIRS):
-	$(MAKE) -C $(@:build-%=%) $(MAKECMDGOALS)
+	$(MAKE) -C $(@:build-%=%) $(MAKECMDGOALS) KERNELRELEASE=$(KERNELRELEASE)
 
-clean: $(CLEANDIRS) clean_dtbo
+clean: $(CLEANDIRS)
 $(CLEANDIRS):
-	$(MAKE) -C $(@:clean-%=%) $(MAKECMDGOALS)
+	$(MAKE) -C $(@:clean-%=%) $(MAKECMDGOALS) KERNELRELEASE=$(KERNELRELEASE)
 
 install: $(INSTALLDIRS)
 modules_install: $(INSTALLDIRS)

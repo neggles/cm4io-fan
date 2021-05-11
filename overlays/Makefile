@@ -10,11 +10,11 @@ always-y += $(dtbo-y)
 clean-files := $(dtbo-y)
 
 all:
-        $(MAKE) -C $(KDIR) M=$(PWD) DTC_INCLUDE=$(DTC_INCLUDE)
+	$(MAKE) -C $(KDIR) M=$(PWD) DTC_INCLUDE=$(DTC_INCLUDE)
 
 clean:
-        $(MAKE) -C $(KDIR) M=$(PWD) clean
+	$(MAKE) -C $(KDIR) M=$(PWD) clean
 
 install: $(modules_install)
 modules_install:
-        cp $(dtbo-y) /boot/overlays/
+	cp $(dtbo-y) /boot/overlays/
