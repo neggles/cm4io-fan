@@ -5,7 +5,7 @@ ret=-1
 save_dt_overlay()
 {
     local PWD=$(eval pwd)
-    local overlay="cm4io-fan.dtbo"
+    local overlay=$1
     local build_dir="$PWD/overlays"
     local base_dir="${PWD%/build*}/$kernelver/$arch/module"
 
@@ -18,7 +18,7 @@ save_dt_overlay()
     ret=$?
 }
 
-save_dt_overlay
+save_dt_overlay "cm4io-fan.dtbo"
 echo ""
 exit $ret
 

@@ -1,18 +1,20 @@
+KDIR ?= /lib/modules/${KERNELRELEASE}/build
 PWD := $(shell pwd)
 
-DTC_FLAGS ?= -@
-DTC_INCLUDE := /lib/modules/${kernelver}/build/include
+DTC_INCLUDE := $(KDIR)/include
 
 dtbo-y  += cm4io-fan.dtbo
 
-targets += $(dtbo-y)
-always-y	:= $(dtbo-y)
+targets  += $(dtbo-y)
+always-y += $(dtbo-y)
+clean-files := $(dtbo-y)
 
 all:
-	make -C /lib/modules/${kernelver}/build M=$(PWD) DTC_INCLUDE=/lib/modules/${KERNELRELEASE}/build/include
+        $(MAKE) -C $(KDIR) M=$(PWD) DTC_INCLUDE=$(DTC_INCLUDE)
 
 clean:
-	make -C /lib/modules/${kernelver}/build M=$(PWD) clean
+        $(MAKE) -C $(KDIR) M=$(PWD) clean
 
+install: $(modules_install)
 modules_install:
-	cp ./$(dtbo-y) /boot/overlays/
+        cp $(dtbo-y) /boot/overlays/

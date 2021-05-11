@@ -1,4 +1,5 @@
 KDIR ?= /lib/modules/$(KERNELRELEASE)/build
+obj-m += emc2301.o
 
 default:
 	$(MAKE) -C $(KDIR) M=$$PWD

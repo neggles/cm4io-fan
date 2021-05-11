@@ -1,26 +1,29 @@
-
-KERNELRELEASE ?= `uname -r`
-export kernelver ?= $(shell uname -r)
+# cm4io-fan
+KERNELRELEASE ?= $(shell uname -r)
+export kernelver ?= $(KERNELRELEASE)
 export arch ?= $(shell uname -m)
+
+DKMS := $(shell command -v dkms 2> /dev/null)
 
 DIRS = emc2301 overlays
 BUILDDIRS = $(DIRS:%=build-%)
 CLEANDIRS = $(DIRS:%=clean-%)
-
-DKMS := $(shell command -v dkms 2> /dev/null)
+INSTALLDIRS = $(DIRS:%=install-%)
 
 all: check_dkms $(BUILDDIRS)
 modules_install: $(BUILDDIRS)
 $(DIRS): $(BUILDDIRS)
 $(BUILDDIRS):
-	$(MAKE) -C $(@:build-%=%) $(MAKECMDGOALS) KERNELRELEASE=$(KERNELRELEASE)
+	$(MAKE) -C $(@:build-%=%) $(MAKECMDGOALS)
 
 clean: $(CLEANDIRS) clean_dtbo
 $(CLEANDIRS):
-	$(MAKE) -C $(@:clean-%=%) clean KERNELRELEASE=$(KERNELRELEASE)
-clean_dtbo:
-	rm -f $(KERNELRELEASE)/module/cm4io-fan.dtbo
-	rmdir -p $(KERNELRELEASE)/module
+	$(MAKE) -C $(@:clean-%=%) $(MAKECMDGOALS)
+
+install: $(INSTALLDIRS)
+modules_install: $(INSTALLDIRS)
+$(INSTALLDIRS):
+	$(MAKE) -C $(@:install-%=%) modules_install
 
 check_dkms:
 ifndef DKMS

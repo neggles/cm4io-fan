@@ -2,6 +2,8 @@
 *.ko
 *.mod*
 *.cmd
+*.tmp
+*.dtbo
 Module.symvers
 modules.order
 
