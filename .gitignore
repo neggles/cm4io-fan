@@ -50,5 +50,3 @@ build/
 # debhelper
 debian/.debhelper
 
-# clang-format config
-.clang-format
