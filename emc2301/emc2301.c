@@ -29,6 +29,7 @@
  * number of edges equals (poles * 2 + 1).
  */
 #define FAN_RPM_FACTOR 3932160
+#define FAN_TACH_MULTIPLIER 1
 
 #define TACH_HIGH_MASK GENMASK(12, 5)
 #define TACH_LOW_MASK GENMASK(4, 0)
@@ -95,7 +96,7 @@ static int emc2301_read_fan_rpm(struct device *dev, int channel, long *val)
 
 	channel_tach = emc2301_read_fan_tach(dev, channel);
 
-	fan_rpm = (FAN_RPM_FACTOR * 2) / channel_tach;
+	fan_rpm = (FAN_RPM_FACTOR * FAN_TACH_MULTIPLIER) / channel_tach;
 	*val = fan_rpm;
 
 	return 0;
@@ -113,7 +114,7 @@ static int emc2301_set_fan_rpm(struct emc2301_data *devdata, int channel, long t
 
 	channel_reg = 0x3c + (channel * 10);
 
-	target_tach = (FAN_RPM_FACTOR * 2) / target_rpm;
+	target_tach = (FAN_RPM_FACTOR * FAN_TACH_MULTIPLIER) / target_rpm;
 	dev_dbg(devdata->dev, "RPM %ld requested, target tach is %ld\n", target_rpm, target_tach);
 
 	rpm_high = (target_tach & TACH_HIGH_MASK) >> 5;
@@ -311,12 +312,18 @@ static int emc2301_enable_rpm_control(struct emc2301_data *data, u16 fan_dev, bo
 	u8 fan_config_reg_val;
 	int ret = 0;
 
+	// get current fan config reg value
 	fan_config_reg_addr = 0x32 + (fan_dev * 0x10);
-
 	fan_config_reg_val = i2c_smbus_read_byte_data(data->i2c, fan_config_reg_addr);
+
+	// update config reg to enable/disable control as requested
 	if (enable) {
+		// set ENAx to enable drive
 		fan_config_reg_val |= (1 << 7);
+		// clear RNGx to set minRPM=500
+		fan_config_reg_val &= ~(0b11 << 5);
 	} else {
+		// clear ENAx
 		fan_config_reg_val &= ~(1 << 7);
 	}
 
@@ -435,8 +442,8 @@ static int emc2301_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id 
 	for(i=0; i<data->num_fans; i++) {
 		channel_reg = EMC230X_REG_MINTACH + (i * 10);
 		regval = i2c_smbus_read_byte_data(i2c, channel_reg);
-		min_tach = (FAN_RPM_FACTOR * 2) / (regval << 5);
-		data->minimum_rpm[i] = (FAN_RPM_FACTOR * 2) / min_tach;
+		min_tach = (FAN_RPM_FACTOR * FAN_TACH_MULTIPLIER) / (regval << 5);
+		data->minimum_rpm[i] = (FAN_RPM_FACTOR * FAN_TACH_MULTIPLIER) / min_tach;
 		dev_info(&i2c->dev, "Channel %d minimum RPM is %d", i, data->minimum_rpm[i]);
 	}
 #endif
