@@ -11,11 +11,11 @@ Uses Traverse Technologies' EMC2301 [hwmon driver](https://gitlab.traverse.com.a
 ```
 sudo apt install dkms
 ```
-2. Download the latest source .tar.gz from the releases page
+2. Download the latest source .tar.gz from the [releases](https://github.com/neg2led/cm4io-fan/releases/) page
 3. Untar it to `/usr/src/cm4io-fan-<version>` and run the dkms install:
 ```
-tar -xzvf cm4io-fan-0.1.0.tar.gz -C /usr/src/
-sudo dkms install cm4io-fan/0.1.0
+tar -xzvf 0.1.1.tar.gz -C /usr/src/
+sudo dkms install cm4io-fan/0.1.1
 ```
 4. Add this line to your /boot/config.txt (adjust the rpm values for your specific fan, defaults are 3500 / 5500) and reboot.
    See below for more config options.
