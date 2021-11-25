@@ -2,7 +2,7 @@
 
 kernel module and device tree overlay to add support for the EMC2301 fan controller on the Raspberry Pi Compute Module 4 IO Board.
 
-*Works with 5.10.y 64-bit kernels only.*
+*Works with 5.10.y and 5.13.y 64-bit kernels only.*
 
 Uses Traverse Technologies' EMC2301 [hwmon driver](https://gitlab.traverse.com.au/ls1088firmware/traverse-sensors) for their [ten64](https://www.crowdsupply.com/traverse-technologies/ten64) board, which you should definitely check out because it's awesome.
 
