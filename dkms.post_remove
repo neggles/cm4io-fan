@@ -3,7 +3,8 @@
 remove_dt_overlay()
 {
     local overlay=$1
-    local overlays_dir="/boot/overlays"
+    source /etc/default/rpi-eeprom-update
+    local overlays_dir="${BOOTFS:-/boot}/overlays"
 
     echo "${overlay}:"
     echo " - Uninstallation"
