@@ -22,6 +22,11 @@ sudo dkms install cm4io-fan/0.1.0
 ```
 dtoverlay=cm4io-fan,minrpm=1000,maxrpm=5000
 ```
+5. Some distributions may not load the kernel module automatically (such as Ubuntu).  In order to load the module, you may need
+   to add it to `/etc/modules`, or make a new file called `/etc/modules-load.d/cm4io-fan.conf` with the contents:
+```
+emc2301
+```
 
 ## Install from git
 1. Install dkms if you haven't already:
