@@ -17,9 +17,12 @@ sudo apt install dkms
 tar -xzvf 0.1.1.tar.gz -C /usr/src/
 sudo dkms install cm4io-fan/0.1.1
 ```
-4. Add this line to your /boot/config.txt (adjust the rpm values for your specific fan, defaults are 3500 / 5500) and reboot.
+4. Add these lines to your /boot/config.txt (adjust the rpm values for your specific fan, defaults are 3500 / 5500) and reboot.
    See below for more config options.
 ```
+# Enable I2C bus 1 on VideoCore (/dev/i2c-10 in Raspberry Pi OS)
+dtparam=i2c_vc=on
+# Enable CM4 IO Board fan controller
 dtoverlay=cm4io-fan,minrpm=1000,maxrpm=5000
 ```
 5. Some distributions may not automatically load the kernel module despite the devicetree entry; Raspberry Pi OS does, Ubuntu 21.10 does not, etc. 
