@@ -1,3 +1,9 @@
+cm4io-fan-dkms (0.2.0-0) buster; urgency=medium
+
+  * Fix compatibility issue with Ubuntu 21.10
+  * Fix functionality with low-RPM fans
+
+ -- Andrew Powers-Holmes <andrew@omnom.net>  Sun, 01 May 2022 18:30:00 +1000
 cm4io-fan-dkms (0.1.0-0) buster; urgency=medium
 
   * Initial package.
