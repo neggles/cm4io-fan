@@ -34,7 +34,7 @@ echo -n "Update config.txt... "
 if (grep -q "^dtoverlay=${DRV_NAME}" /boot/config.txt); then
     echo "line already present, no change"
 else
-    sudo echo "dtoverlay=cm4io-fan,minrpm=500,maxrpm=2500" >> /boot/config.txt
+    sudo echo -e "dtparam=i2c_vc=on\ndtoverlay=cm4io-fan,minrpm=500,maxrpm=2500" >> /boot/config.txt
     echo "line added, edit to adjust rpm/temp settings."
 fi
 
