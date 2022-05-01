@@ -2,7 +2,7 @@
 
 kernel module and device tree overlay to add support for the EMC2301 fan controller on the Raspberry Pi Compute Module 4 IO Board.
 
-*Works with 5.10.y 64-bit kernels only.*
+*Works with 5.10+ 64-bit kernels only.*
 
 Uses Traverse Technologies' EMC2301 [hwmon driver](https://gitlab.traverse.com.au/ls1088firmware/traverse-sensors) for their [ten64](https://www.crowdsupply.com/traverse-technologies/ten64) board, which you should definitely check out because it's awesome.
 
@@ -21,6 +21,11 @@ sudo dkms install cm4io-fan/0.1.1
    See below for more config options.
 ```
 dtoverlay=cm4io-fan,minrpm=1000,maxrpm=5000
+```
+5. Some distributions may not automatically load the kernel module despite the devicetree entry; Raspberry Pi OS does, Ubuntu 21.10 does not, etc. 
+   To make the module load, edit `/etc/modules` (or make a new file called `/etc/modules-load.d/cm4io-fan.conf`), adding this line:
+```
+emc2301
 ```
 
 ## Install from git

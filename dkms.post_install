@@ -7,7 +7,8 @@ install_dt_overlay()
     local PWD=$(eval pwd)
     local overlay=$1
     local base_dir="${PWD%/*}/$kernelver/$arch/module"
-    local overlays_dir="/boot/overlays"
+    source /etc/default/rpi-eeprom-update
+    local overlays_dir="${BOOTFS:-/boot}/overlays"
 
     echo "$overlay:"
     echo " - Installation"
