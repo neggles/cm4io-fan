@@ -14,8 +14,8 @@ sudo apt install dkms
 2. Download the latest source .tar.gz from the [releases](https://github.com/neg2led/cm4io-fan/releases/) page
 3. Untar it to `/usr/src/cm4io-fan-<version>` and run the dkms install:
 ```
-tar -xzvf 0.1.1.tar.gz -C /usr/src/
-sudo dkms install cm4io-fan/0.1.1
+tar -xzvf 0.2.0.tar.gz -C /usr/src/
+sudo dkms install cm4io-fan/0.2.0
 ```
 4. Add these lines to your /boot/config.txt (adjust the rpm values for your specific fan, defaults are 3500 / 5500) and reboot.
    See below for more config options.
